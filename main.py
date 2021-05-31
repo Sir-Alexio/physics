@@ -1,3 +1,4 @@
 import Choose_type
+import Graphic_interface
 
-print(Choose_type.make_choice())
+# (Choose_type.make_choice())
