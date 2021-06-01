@@ -9,7 +9,19 @@ def print_result(result):
         .grid(row=5, column=1, pady=20)
 
 
-def make_choice(event):
+def function(a, b, c, d, x):
+    return a + b * x + c * math.pow(x, 2) + d * math.pow(x, 3)
+
+
+def make_choice_temperature(event):
+    if combo.get() == "Тип термопары L":
+        a = 0.13355
+        b = 0.0623
+        c = 5.43*10e-5
+        d = -3.61*10e-8
+
+
+def make_choice_resist(event):
     if combo.get() == "Платиновые ТС и ЧЭ, α = 0,00385 °С-1":
 
         a = 3.9083 * 10e-4
@@ -108,45 +120,6 @@ title_combo.current(1)
 title_combo.grid(row=0, column=1, pady=20)
 
 if title_combo.get() == "Термометры сопротивления":
-    combo = Combobox(window, width=35 )
-    combo['values'] = (
-        "Выберите тип термопапары:", "Платиновые ТС и ЧЭ, α = 0,00385 °С-1", "Платиновые ТС и ЧЭ, α = 0,00391 °С-1",
-        "Медные ТС и ЧЭ, α = 0,00428 °С-1", "Никелевые ТС и ЧЭ, α = 0,00617 °С-1")
-    combo.current(0)
-
-    combo.grid(row=1, column=1, columnspan=2, pady=20)
-    Label(window, text="Температура:", font=("Arial Bold", 10)) \
-        .grid(row=2, column=0, pady=20)
-    i = IntVar()
-    txt_tempetature = Entry(window, width=10, text=i)
-    txt_tempetature.grid(row=2, column=1, pady=20)
-
-    Label(window, text="Сопротивление при 0:", font=("Arial Bold", 10)) \
-        .grid(row=3, column=0, pady=20)
-    j = IntVar()
-    zero_Resist = Entry(window, width=10, text=j)
-    zero_Resist.grid(row=3, column=1, pady=20)
-
-    Label(window, text="Сопротивление темпопреобр.", font=("Arial Bold", 10)) \
-        .grid(row=4, column=0, pady=20)
-    k = IntVar()
-    resist = Entry(window, width=10, text=k)
-
-    resist.grid(row=4, column=1, pady=20)
-
-    Label(window, text="Результат:", font=("Arial Bold", 10)) \
-        .grid(row=5, column=0, pady=20)
-
-    result_button = Button(window, text="Расчитать")
-
-    result_button.grid(column=1, row=6)
-    print(combo.get())
-    result_button.bind('<Button-1>', make_choice)
-
-    i.set(0)
-    j.set(0)
-    k.set(0)
-else:
     combo = Combobox(window, width=35)
     combo['values'] = (
         "Выберите тип термопапары:", "Платиновые ТС и ЧЭ, α = 0,00385 °С-1", "Платиновые ТС и ЧЭ, α = 0,00391 °С-1",
@@ -180,11 +153,52 @@ else:
 
     result_button.grid(column=1, row=6)
     print(combo.get())
-    result_button.bind('<Button-1>', make_choice)
+    result_button.bind('<Button-1>', make_choice_resist())
 
     i.set(0)
     j.set(0)
     k.set(0)
+else:
+    combo = Combobox(window, width=40)
+    combo['values'] = ("Выберите тип термопары",
+                       "Тип термопары L", "Тип термопары S", "Тип термопары M",
+                       "Тип термопары N", "Тип термопары K", "Тип термопары R",
+                       "Тип термопары T", "Тип термопары B", "Тип термопары E",
+                       "Тип термопары J", "Тип термопары A-1/A-2/A-3")
+    combo.current(0)
+    combo.grid(row=1, column=1, columnspan=2, pady=20)
 
+    Label(window, text="Температура:", font=("Arial Bold", 10)) \
+        .grid(row=2, column=0, pady=20)
+    i = IntVar()
+    txt_tempetature = Entry(window, width=10, text=i)
+    txt_tempetature.grid(row=2, column=1, pady=20)
+
+    Label(window, text="Температура окружающей среды", font=("Arial Bold", 10)) \
+        .grid(row=3, column=0, pady=20)
+    j = IntVar()
+    outside_temperature = Entry(window, width=10, text=j)
+    outside_temperature.grid(row=3, column=1, pady=20)
+
+    Label(window, text="Термо-ЭДС", font=("Arial Bold", 10)) \
+        .grid(row=4, column=0, pady=20)
+
+    k = IntVar()
+    electric_force = Entry(window, width=10, text=k)
+
+    electric_force.grid(row=4, column=1, pady=20)
+
+    Label(window, text="Результат:", font=("Arial Bold", 10)) \
+        .grid(row=5, column=0, pady=20)
+
+    result_button = Button(window, text="Расчитать")
+
+    result_button.grid(column=1, row=6)
+
+    result_button.bind('<Button-1>', make_choice_temperature)
+
+    i.set(0)
+    j.set(0)
+    k.set(0)
 
 window.mainloop()
