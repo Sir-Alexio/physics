@@ -1,4 +1,6 @@
-import Choose_type
+from tkinter import *
+from tkinter.ttk import Combobox
 import Graphic_interface
 
-# (Choose_type.make_choice())
+
+

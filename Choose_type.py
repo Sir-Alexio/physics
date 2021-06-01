@@ -16,7 +16,7 @@ def make_choice(number_of_termo, temperature, zero_resist):
                 result = zero_resist * (
                         1 + a * temperature + b * math.pow(temperature, 2) + c * (temperature - 100) * math.pow(
                     temperature, 3))
-
+                return result
 
 
             elif 0 < temperature <= 850:
