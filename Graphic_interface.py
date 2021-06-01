@@ -1,10 +1,11 @@
 from tkinter import *
 from tkinter.ttk import Combobox
+import Choose_type
 
 window = Tk()
 window.title("Calculator")
 
-window.geometry('500x500')
+window.geometry('600x500')
 
 Label(window, text="Термометры сопротивления", font=("Arial Bold", 15)) \
     .grid(row=0, column=1, columnspan=2, pady=10)
@@ -41,8 +42,10 @@ resist.grid(row=4, column=1, pady=20)
 Label(window, text="Результат:", font=("Arial Bold", 10)) \
     .grid(row=5, column=0, pady=20)
 
-result = Entry(window, width=10)
+result_button = Button(window, text="Расчитать", command=Choose_type.make_choice(combo.get(),txt_tempetature,zero_resist))
 
-result.grid(row=5, column=1, pady=20, columnspan=2)
+result_button.grid(column=1, row=6)
 
 window.mainloop()
+
+
