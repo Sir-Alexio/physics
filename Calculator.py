@@ -376,11 +376,13 @@ class Calculator:
             self.__exit_button.pack(pady=20)
             self.__flag = False
             self.__is_temperature_resist = True
+            self.__termopara_button.destroy()
+            self.__temperature_resist_button.destroy()
 
     def make_frame_termopara(self, event):
 
         if self.__flag:
-            #self.__frame = Frame(self.__window, width=800, height=400)
+
             self.__combo = Combobox(self.__frame, width=40)
 
             self.__combo['values'] = ("Выберите тип термопары",
@@ -409,3 +411,5 @@ class Calculator:
             self.__exit_button.pack(pady=20)
             self.__flag = False
             self.__is_termopara = True
+            self.__termopara_button.destroy()
+            self.__temperature_resist_button.destroy()
