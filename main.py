@@ -14,4 +14,8 @@ calculator.paint_button(calculator.get_termopara_button(), 0, 2)
 calculator.get_termopara_button().bind('<Button-1>', calculator.make_frame_termopara)
 calculator.get_temperature_resist_button().bind('<Button-1>', calculator.make_frame_temperature_resist)
 
+calculator.get_resul_button().bind('<Button-1>', calculator.calculate)
+
+calculator.get_exit_button().bind('<Button-1>', calculator.exit)
+
 calculator.get_window().mainloop()
